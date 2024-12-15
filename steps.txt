@@ -1,0 +1,93 @@
+1. Make sure your express setup is ready and hello world get api is working
+
+2. make folder name controllers
+
+3. cd controllers
+
+4. create sub folders like users admins teams food
+
+5. create index.js in each folder
+
+6. in each index.js file, this should be the code below 
+....
+
+import express from "express"
+
+const router = express.Router()
+
+router.get("/getallusers, (req,res) => {
+  try{
+    res.status(200).json({msg: "get all users"})
+
+  }
+  catch (error) {
+    console.log(error)
+  }
+})
+
+export default router;
+
+....
+
+7. Make this setup in all subfolders in there respective index.js files
+
+8. now come back to app.js
+
+....
+
+import express from 'express'
+import userRouter from "./controllers/users/index.js"
+
+const app = express()
+const PORT = 5000;
+
+app.use(express.json())
+
+app.get("/", (req,res) => {
+  try{
+
+    res.status(200).json({msg: "hello server"})
+
+  }
+  catch (error){
+    console.log(error)
+    res.status(500).json({msg: error})
+  }
+})
+
+app.use("/users", userRouter)
+app.use("/admins, adminRouter)
+app.use("/food, foodRouter)
+
+app.listen(PORT, () => {
+  console.log(`Server up and running at ${PORT})
+})
+....
+
+9. Open postman
+
+10. Check your ip address and port from server (express server)
+
+11. make sure your server is up and running
+
+12. get ip and port
+
+13. dont use https://
+
+14. use only http:// for local server of express
+
+15. copy paste url in postman url box
+
+16. check the method GET, POST, PUT, DELETE
+
+17. click on send and check the response
+
+18. if you get error server crash then change the port number
+
+19. in catch block do
+...
+catch (error){
+  console.log(error);
+  res.status(500).json({msg:error})
+}
+....
